@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Logger } from './logger.js';
+import { Logger } from './Logger.js';
 
 export * from './setting.js';
-export * from './logger.js';
+export * from './Logger.js';
 
 export function indent(str, {amount = 2, indent = null}) {
   indent = indent || new Array(amount + 1).join(' ');

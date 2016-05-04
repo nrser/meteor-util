@@ -1,4 +1,6 @@
-import {UtilError} from './errors';
+import { _ } from 'meteor/underscore';
+
+import { UtilError } from './errors';
 
 export class SettingError extends UtilError {}
 

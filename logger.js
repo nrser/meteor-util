@@ -1,6 +1,6 @@
-// import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { check as meteorCheck, Maybe } from 'meteor/check';
+import { Match } from 'meteor/check'
 
 import { setting } from './setting.js';
 
@@ -187,7 +187,7 @@ export class Logger {
     return new RegExp(pattern, flags);
   } // cloneRegExp()
   
-  static snapshot(value) {
+  static snapshot(value, seen = new Set()) {
     if (Logger.canReferenceInSnaphot(value)) {
       return value;
       
@@ -195,7 +195,12 @@ export class Logger {
       return new Date(value);
       
     } else if (_.isArray(value)) {
-      return _.map(value, function(i){ return Logger.snapshot(i) });
+      if (seen.has(value)) {
+        return "CIRCULAR REFERENCE";
+      } else {
+        seen.add(value);
+        return _.map(value, function(i){ return Logger.snapshot(i, seen) });
+      }
       
     } else if (_.isRegExp(value)) {
       return cloneRegExp(value);
@@ -205,9 +210,14 @@ export class Logger {
     //   return value;
       
     } else if (_.isObject(value)) {
-      const copy = {};
-      _.each(value, function(v, k) { copy[k] = Logger.snapshot(v) });
-      return copy;
+      if (seen.has(value)) {
+        return "CIRCULAR REFERENCE";
+      } else {
+        seen.add(value);
+        const copy = {};
+        _.each(value, function(v, k) { copy[k] = Logger.snapshot(v, seen) });
+        return copy;
+      }
       
     } else {
       console.log("snapshot() is not sure what this is", value);

@@ -1,5 +1,4 @@
 import { chai } from 'meteor/practicalmeteor:chai';
-import * as Util from './index.js';
 
 export function itMaps({
   func,

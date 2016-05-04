@@ -1,12 +1,16 @@
-import {chai} from 'meteor/practicalmeteor:chai';
-import {itMaps} from '/imports/util/testing.js';
-import * as Util from '/imports/util';
+import { chai } from 'meteor/practicalmeteor:chai';
+import { itMaps } from './testing.js';
+import * as Util from '.';
+
+import './errors.tests.js';
+import './errors.tests.js';
+import './Logger.tests.js';
 
 import {j} from './index.js';
 
 const log = Util.logger('imports:util:index:tests');
 
-describe('imports/util/index.js', () => {
+describe('index.js', () => {
   
   describe('j()', () => {
     

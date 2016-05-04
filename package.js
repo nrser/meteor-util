@@ -25,8 +25,12 @@ Package.onUse(function(api) {
 });
 
 Package.onTest(function(api) {
-  api.use('ecmascript');
-  api.use('tinytest');
-  api.use('nrser:util');
-  api.mainModule('util-tests.js');
+  api.use([
+    'ecmascript',
+    'random',
+    'practicalmeteor:mocha',
+    'nrser:util',
+  ]);
+ 
+  api.mainModule('index.tests.js');
 });

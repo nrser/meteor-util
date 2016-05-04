@@ -1,6 +1,6 @@
 import {chai} from 'meteor/practicalmeteor:chai';
-import {itMaps} from '/imports/util/testing.js';
-import * as Util from '/imports/util';
+import {itMaps} from './testing.js';
+import * as Util from '.';
 
 import {UtilError, SyntheticError} from './errors';
 
