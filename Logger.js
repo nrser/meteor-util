@@ -163,7 +163,8 @@ export class Logger {
       _.isNumber(value) ||
       _.isString(value) ||
       _.isFunction(value) ||
-      _.isNaN(value)
+      _.isNaN(value) ||
+      (typeof value === 'symbol')
     )
   } // canReferenceInSnaphot()
   
@@ -222,7 +223,7 @@ export class Logger {
     } else {
       console.log("snapshot() is not sure what this is", value);
       
-      return `UNKNOWN: ${ value }`;
+      return `UNKNOWN: ${ value.toString() }`;
     }
   } // snapshot()
   
