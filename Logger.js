@@ -197,7 +197,7 @@ export class Logger {
       
     } else if (_.isArray(value)) {
       if (seen.has(value)) {
-        return "CIRCULAR REFERENCE";
+        return value;
       } else {
         seen.add(value);
         return _.map(value, function(i){ return Logger.snapshot(i, seen) });
@@ -212,7 +212,7 @@ export class Logger {
       
     } else if (_.isObject(value)) {
       if (seen.has(value)) {
-        return "CIRCULAR REFERENCE";
+        return value;
       } else {
         seen.add(value);
         const copy = {};
