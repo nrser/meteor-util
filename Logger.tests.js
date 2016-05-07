@@ -16,7 +16,7 @@ describe('Logger.js', () => {
       
       chai.expect(
         Logger.snapshot(obj)
-      ).to.eql({obj: "CIRCULAR REFERENCE"});
+      ).to.eql({obj: obj});
     });
     
   }); // describe example()

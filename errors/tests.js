@@ -1,8 +1,8 @@
-import {chai} from 'meteor/practicalmeteor:chai';
-import {itMaps} from './testing.js';
-import * as Util from '.';
+import { chai } from 'meteor/practicalmeteor:chai';
+import { itMaps } from '../testing.js';
+import * as Util from '..';
 
-import {UtilError, SyntheticError} from './errors';
+import {UtilError, SyntheticError} from '.';
 
 const log = Util.logger('imports:util:errors:tests');
 

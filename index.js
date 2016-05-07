@@ -4,6 +4,7 @@ import { Logger } from './Logger.js';
 
 export * from './setting.js';
 export * from './Logger.js';
+export * from './check.js';
 
 export function indent(str, {amount = 2, indent = null}) {
   indent = indent || new Array(amount + 1).join(' ');

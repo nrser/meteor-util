@@ -1,20 +1,11 @@
 import { _ } from 'meteor/underscore';
-import { check as meteorCheck, Maybe } from 'meteor/check';
-import { Match } from 'meteor/check'
+import { check, Maybe, Match } from './check.js';
 
 import { setting } from './setting.js';
 
 let clc;
 if (Meteor.isServer) {
   clc = require('cli-color');
-}
-
-function check(value, pattern) {
-  try {
-    meteorCheck(value, pattern);
-  } catch (error) {
-    throw new Error(`value ${ JSON.stringify(value) } failed check: ${ error }`);
-  }
 }
 
 // adapted from pince
