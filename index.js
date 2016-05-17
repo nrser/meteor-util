@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 
 import { Logger } from './Logger.js';
 
+export * from './errors';
 export * from './setting.js';
 export * from './Logger.js';
 export * from './check.js';
