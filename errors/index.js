@@ -1,2 +1,2 @@
-export * from './SyntheticError.js';
+export * from './BaseError.js';
 export * from './UtilError.js';

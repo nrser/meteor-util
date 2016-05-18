@@ -1,3 +1,3 @@
-import { SyntheticError } from './SyntheticError.js';
+import { BaseError } from './BaseError.js';
 
-export class UtilError extends SyntheticError {}
+export class UtilError extends BaseError {}
