@@ -30,9 +30,9 @@ describe('imports/util/errors', () => {
       chai.expect(error).to.be.instanceof(BaseError);
     });
     
-    it("has correct values property", () => {
-      chai.expect(error.values).to.be.instanceof(Object);
-      chai.expect(error.values.x).to.equal('ex');
+    it("has correct details property", () => {
+      chai.expect(error.details).to.be.instanceof(Object);
+      chai.expect(error.details.x).to.equal('ex');
     });
     
   }); // describe new BaseError()
@@ -52,9 +52,9 @@ describe('imports/util/errors', () => {
       chai.expect(error).to.be.instanceof(UtilError);
     });
     
-    it("has correct values property", () => {
-      chai.expect(error.values).to.be.instanceof(Object);
-      chai.expect(error.values.x).to.equal('ex');
+    it("has correct details property", () => {
+      chai.expect(error.details).to.be.instanceof(Object);
+      chai.expect(error.details.x).to.equal('ex');
     });
     
   }); // describe new ExtendableError()

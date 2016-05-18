@@ -20,7 +20,7 @@ export function check(value, pattern) {
   try {
     meteorCheck(value, pattern);
   } catch (error) {
-    throw new MatchError(error.message, {value});
+    throw new MatchError(error.message, {value, pattern});
   }
 }
 
@@ -53,3 +53,5 @@ export function match(value, ...patterns) {
 export const NotEmpty = Match.Where(function(value) {
   return !_.isEmpty(value);
 });
+
+NotEmpty.name = 'NotEmpty';

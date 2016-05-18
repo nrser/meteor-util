@@ -41,8 +41,8 @@ describe('match.js', () => {
       }
       
       chai.expect(error).to.be.instanceOf(MatchError);
-      chai.expect(error.values.value).to.equal(value);
-      chai.expect(error.values.patterns).to.eql([]);
+      chai.expect(error.details.value).to.equal(value);
+      chai.expect(error.details.patterns).to.eql([]);
     });
     
     it("matches against instances",  () => {
