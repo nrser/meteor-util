@@ -4,23 +4,30 @@
 */
 
 import { _ } from 'meteor/underscore';
-import { check as meteorCheck, Match } from 'meteor/check';
+import { check as meteorCheck, Match as MeteorMatch } from 'meteor/check';
 import { UtilError } from './errors';
 
-// re-export here for convenience
-export { Match } from 'meteor/check';
+import * as Util from '.';
+
+export const Match = {};
+
+_.extend(Match, MeteorMatch);
 
 /**
-* the error *we* throw when a match fails, confusingly named the same
-* as the one meteor throws, but ours has the value that failed attached.
+* the error *we* throw when a check fails
+* ours has the value that failed attached.
 */
-export class MatchError extends UtilError {}
+export class CheckError extends UtilError {}
 
 export function check(value, pattern) {
   try {
     meteorCheck(value, pattern);
   } catch (error) {
-    throw new MatchError(error.message, {value, pattern});
+    let message = error.message + Util.j` (value=${ value }, pattern=${ pattern.name })`;
+    if (pattern.name) {
+      
+    }
+    throw new CheckError(message);
   }
 }
 
@@ -44,14 +51,19 @@ export function match(value, ...patterns) {
     return result;
   }
   
-  throw new MatchError("instance match failed", {
+  throw new CheckError("instance match failed", {
     value,
     patterns: _.map(patterns, pattern => pattern[0]),
   });
 }
 
-export const NotEmpty = Match.Where(function(value) {
+Match.NotEmpty = Match.Where(function(value) {
   return !_.isEmpty(value);
 });
+Match.NotEmpty.name = 'NotEmpty';
 
-NotEmpty.name = 'NotEmpty';
+Match.NonEmptyString = Match.Where(function(value) {
+  return _.isString(value) && !_.isEmpty(value);
+})
+Match.NonEmptyString.name = "NonEmptyString";
+

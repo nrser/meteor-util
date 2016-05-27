@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import { chai } from 'meteor/practicalmeteor:chai';
-import { itMaps } from '../testing.js';
-import * as Util from '..';
+import { itMaps } from './testing.js';
+import * as Util from '.';
 
-import {UtilError, BaseError} from '.';
+import { UtilError, BaseError } from './errors.js';
 
 const log = Util.logger('imports:util:errors:tests');
 

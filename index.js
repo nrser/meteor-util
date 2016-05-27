@@ -2,10 +2,11 @@ import { Meteor } from 'meteor/meteor';
 
 import { Logger } from './Logger.js';
 
-export * from './errors';
+export * from './errors.js';
 export * from './setting.js';
 export * from './Logger.js';
 export * from './check.js';
+export * from './object.js';
 
 export function indent(str, {amount = 2, indent = null}) {
   indent = indent || new Array(amount + 1).join(' ');
@@ -67,3 +68,4 @@ export function tag(func) {
 
 export const JSONTag = tag(JSON.stringify);
 export const j = JSONTag;
+

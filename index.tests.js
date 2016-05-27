@@ -2,9 +2,10 @@ import { chai } from 'meteor/practicalmeteor:chai';
 import { itMaps } from './testing.js';
 import * as Util from '.';
 
-import './errors/tests.js';
+import './errors.tests.js';
 import './Logger.tests.js';
 import './check.tests.js';
+import './object.tests.js';
 
 import {j} from './index.js';
 

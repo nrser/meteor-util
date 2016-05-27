@@ -4,7 +4,7 @@ import { itMaps } from 'meteor/nrser:util/testing.js';
 import * as Util from 'meteor/nrser:util';
 
 import {
-  MatchError,
+  CheckError,
   match,
   Match,
 } from './check.js';
@@ -40,7 +40,7 @@ describe('match.js', () => {
         error = e;
       }
       
-      chai.expect(error).to.be.instanceOf(MatchError);
+      chai.expect(error).to.be.instanceOf(CheckError);
       chai.expect(error.details.value).to.equal(value);
       chai.expect(error.details.patterns).to.eql([]);
     });
@@ -57,7 +57,7 @@ describe('match.js', () => {
       chai.expect(match(b, ...patterns)).to.equal('B');
       chai.expect(
         () => match('x', ...patterns)
-      ).to.throw(MatchError);
+      ).to.throw(CheckError);
     });
     
     it("matches against subclasse instances", () => {

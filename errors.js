@@ -13,3 +13,10 @@ export class BaseError extends Meteor.Error {
     this.details = details;
   }
 }
+
+export class UtilError extends BaseError {}
+
+/**
+* raised by mergeNoConflicts when there is a conflict.
+*/
+export class MergeConflictError extends UtilError {}
