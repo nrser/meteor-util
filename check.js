@@ -23,11 +23,9 @@ export function check(value, pattern) {
   try {
     meteorCheck(value, pattern);
   } catch (error) {
-    let message = error.message + Util.j` (value=${ value }, pattern=${ pattern.name })`;
-    if (pattern.name) {
-      
-    }
-    throw new CheckError(message);
+    throw new CheckError(
+      error.message + Util.j` (value=${ value }, pattern=${ pattern })`
+    );
   }
 }
 
