@@ -65,3 +65,7 @@ Match.NonEmptyString = Match.Where(function(value) {
 })
 Match.NonEmptyString.name = "NonEmptyString";
 
+Match.PositiveInteger = Match.Where(function(value) {
+  return (Match.test(value, Match.Integer) && value > 0);
+});
+Match.PositiveInteger.name = "PositiveInteger";
