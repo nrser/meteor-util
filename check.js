@@ -69,3 +69,17 @@ Match.PositiveInteger = Match.Where(function(value) {
   return (Match.test(value, Match.Integer) && value > 0);
 });
 Match.PositiveInteger.name = "PositiveInteger";
+
+// check if a value is a sub-array
+Match.subarrayOf = function(array) {
+  check(array, Array);
+  
+  return Match.Where(function(value) {
+    check(value, Array);
+    
+    return _.every(value, (item) => {
+      return _.contains(array, item);
+    });
+  });
+};
+Match.subarrayOf.name = 'subarrayOf';
