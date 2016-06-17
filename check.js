@@ -35,11 +35,21 @@ export function match(value, ...patterns) {
   let i = 0;
   while (!matched && i < patterns.length) {
     const [pattern, handler] = patterns[i];
-    check(handler, Function);
     
     if (Match.test(value, pattern)) {
       matched = true;
-      result = handler(value);
+      
+      // allow passing a value instead of always warpping it in a function
+      // 
+      // NOTE if you want to return a function, you will of course have
+      // to wrap it.
+      // 
+      if (_.isFunction(handler)) {
+        result = handler(value);
+      } else {
+        result = handler;
+      }
+      
     }
     
     i++;
