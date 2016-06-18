@@ -195,7 +195,7 @@ export class Logger {
       }
       
     } else if (_.isRegExp(value)) {
-      return cloneRegExp(value);
+      return Logger.cloneRegExp(value);
     
     // } else if (_.isError(value)) {
     //   // TODO prob not right but how often to we mutate errors?
