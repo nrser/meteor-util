@@ -22,18 +22,30 @@ export class CheckError extends UtilError {}
 export function check(value, pattern) {
   try {
     meteorCheck(value, pattern);
-  } catch (error) {
-    throw new CheckError(
-      error.message + Util.j` (value=${ value }, pattern=${ pattern })`
+  } catch (meteorCheckError) {
+    const checkError = new CheckError(
+      meteorCheckError.message +
+      Util.j` (value=${ value }, pattern=${ pattern })`
     );
+    
+    throw checkError;
   }
 }
 
 export function match(value, ...patterns) {
+  if (patterns.length == 0) {
+    throw new CheckError("no patterns provided", {
+      value,
+      patterns: _.map(patterns, pattern => pattern[0]),
+    });
+  }
+  
   let matched = false;
   let result;
   let i = 0;
   while (!matched && i < patterns.length) {
+    check(patterns[i].length, 2);
+    
     const [pattern, handler] = patterns[i];
     
     if (Match.test(value, pattern)) {
@@ -59,10 +71,12 @@ export function match(value, ...patterns) {
     return result;
   }
   
-  throw new CheckError("instance match failed", {
+  const error = new CheckError("no match found", {
     value,
     patterns: _.map(patterns, pattern => pattern[0]),
   });
+  
+  throw error;
 }
 
 Match.NotEmpty = Match.Where(function(value) {

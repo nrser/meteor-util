@@ -29,7 +29,7 @@ describe('match.js', () => {
       }
     }
     
-    it("throws an error when there is no match", () => {
+    it("throws an error when there are no patterns", () => {
       const value = "hey";
       let error;
       
@@ -43,6 +43,27 @@ describe('match.js', () => {
       chai.expect(error).to.be.instanceOf(CheckError);
       chai.expect(error.details.value).to.equal(value);
       chai.expect(error.details.patterns).to.eql([]);
+    });
+    
+    it("throws an error when there is not match", () => {
+      const value = "hey";
+      let error;
+      
+      const patterns = [
+        [A, a => 'A'],
+        [B, b => 'B'],
+      ];
+      
+      try {
+        match("hey", ...patterns);
+      } catch(e) {
+        // throw e;
+        error = e;
+      }
+      
+      chai.expect(error).to.be.instanceOf(CheckError);
+      chai.expect(error.details.value).to.equal(value);
+      chai.expect(error.details.patterns).to.eql(_.map(patterns, p => p[0]));
     });
     
     it("matches against instances",  () => {
