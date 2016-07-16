@@ -35,11 +35,6 @@ export const groupByEach = groupEach((result, value, key) => {
   }
 }); // groupByEach()
 
-export function userVerified() {
-  const user = Meteor.user();
-  return user && user.emails[0].verified;
-} // userVerified()
-
 // reverse order to make it easier to call
 export function timeout(seconds, callback) {
   Meteor.setTimeout(callback, seconds);
