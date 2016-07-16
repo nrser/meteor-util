@@ -94,6 +94,11 @@ Match.PositiveInteger = Match.Where(function(value) {
 });
 Match.PositiveInteger.name = "PositiveInteger";
 
+Match.NonNegetiveInteger = Match.Where(function(value) {
+  return (Match.test(value, Match.Integer) && value >= 0);
+});
+Match.NonNegetiveInteger.name = 'NonNegetiveInteger';
+
 // check if a value is a sub-array
 Match.subarrayOf = function(array) {
   check(array, Array);
