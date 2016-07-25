@@ -69,6 +69,16 @@ const FORMAT_TOKENS = {
   '%L': (data) => { return COLORS[data.level](data.level) },
   '%N': (data) => { return data.name },
   '%M': (data) => { return data.messages[0] },
+  '%D': (data) => {
+    let delta = 0;
+    if (Logger.lastOutputTimestamp) {
+      delta = data.timestamp - Logger.lastOutputTimestamp;
+      if (delta > 10000) {
+        delta = 9999;
+      }
+    }
+    return pad(delta, 4) + "ms";
+  },
 };
 
 const MATCH_LEVEL = Match.Where(function(level) {
@@ -81,7 +91,7 @@ const MATCH_LEVEL = Match.Where(function(level) {
 let dateFormatStr = "YYYY-MM-DD HH:mm:ss.SSS";
 
 // let formatStr = "%T %L:  [%N]  %M";
-let formatStr = "%T %L:  [%N]";
+let formatStr = "(%D) %L:  [%N]";
 
 const specificLogLevels = {};
 let baseLogLevel = null;
@@ -262,7 +272,9 @@ export class Logger {
     // 
     data.messages = Logger.snapshot(data.messages);
     
-    const output = Logger.formatLog(data, formatStr)
+    const output = Logger.formatLog(data, formatStr);
+    
+    Logger.lastOutputTimestamp = data.timestamp;
     
     let fn;
     switch (data.level) {
@@ -355,3 +367,5 @@ if (setting('baseLogLevel', null)) {
 if (setting('specificLogLevels', null)) {
   Logger.setLevels(setting('specificLogLevels'));
 }
+
+Logger.lastOutputTimestamp = null;
