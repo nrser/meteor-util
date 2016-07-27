@@ -1,7 +1,7 @@
 import { _ } from 'meteor/underscore';
 import { chai } from 'meteor/practicalmeteor:chai';
 import { itMaps } from 'meteor/nrser:util/testing.js';
-import * as Util from 'meteor/nrser:util';
+import * as util from 'meteor/nrser:util';
 
 import {
   CheckError,
@@ -9,7 +9,7 @@ import {
   Match,
 } from './check.js';
 
-const log = Util.logger('check:tests');
+const log = util.logger('check:tests');
 
 describe('match.js', () => {
   

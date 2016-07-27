@@ -1,10 +1,10 @@
 import { chai } from 'meteor/practicalmeteor:chai';
 import { itMaps } from 'meteor/nrser:util/testing.js';
-import * as Util from 'meteor/nrser:util';
+import * as util from 'meteor/nrser:util';
 
 import { Logger } from './Logger.js';
 
-const log = Util.logger('Logger:tests');
+const log = util.logger('Logger:tests');
 
 describe('Logger.js', () => {
   

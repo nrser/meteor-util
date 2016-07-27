@@ -7,7 +7,7 @@ import { _ } from 'meteor/underscore';
 import { check as meteorCheck, Match as MeteorMatch } from 'meteor/check';
 import { UtilError } from './errors';
 
-import * as Util from '.';
+import * as util from '.';
 
 export const Match = {};
 
@@ -25,7 +25,7 @@ export function check(value, pattern) {
   } catch (meteorCheckError) {
     const checkError = new CheckError(
       meteorCheckError.message +
-      Util.j` (value=${ value }, pattern=${ pattern })`
+      util.j` (value=${ value }, pattern=${ pattern })`
     );
     
     throw checkError;
