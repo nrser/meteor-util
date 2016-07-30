@@ -1,10 +1,10 @@
 import { Meteor } from 'meteor/meteor';
 
-import { Logger } from './Logger.js';
+import { Logger } from '@beiarea/wall-util';
 
+export * from '@beiarea/wall-util';
 export * from './errors.js';
 export * from './setting.js';
-export * from './Logger.js';
 export * from './check.js';
 export * from './object.js';
 export * from './css.js';

@@ -10,10 +10,6 @@ Package.describe({
   documentation: 'README.md'
 });
 
-Npm.depends({
-  "cli-color": '1.1.0',
-});
-
 Package.onUse(function(api) {
   api.versionsFrom('1.3.2.4');
   api.use([
