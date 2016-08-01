@@ -103,12 +103,15 @@ Match.NonNegetiveInteger.name = 'NonNegetiveInteger';
 Match.subarrayOf = function(array) {
   check(array, Array);
   
-  return Match.Where(function(value) {
+  const pattern = Match.Where(function(value) {
     check(value, Array);
     
     return _.every(value, (item) => {
       return _.contains(array, item);
     });
   });
+  
+  pattern.name = 'subarrayOf';
+  
+  return pattern;
 };
-Match.subarrayOf.name = 'subarrayOf';
