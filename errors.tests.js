@@ -3,17 +3,17 @@ import { chai } from 'meteor/practicalmeteor:chai';
 import { itMaps } from './testing.js';
 import * as util from '.';
 
-import { UtilError, BaseError } from './errors.js';
+import { UtilError, MeteorError } from './errors.js';
 
 const log = util.logger('imports:util:errors:tests');
 
 describe('imports/util/errors', () => {
   
-  describe('new BaseError()', () => {
+  describe('new MeteorError()', () => {
     let error;
     
     try {
-      throw new BaseError("i'm a Synthetic Error!", {x: 'ex'});
+      throw new MeteorError("i'm a Synthetic Error!", {x: 'ex'});
     } catch(e) {
       error = e;
     } 
@@ -26,8 +26,8 @@ describe('imports/util/errors', () => {
       chai.expect(error).to.be.instanceof(Meteor.Error);
     });
     
-    it("is an instance of BaseError", () => {
-      chai.expect(error).to.be.instanceof(BaseError);
+    it("is an instance of MeteorError", () => {
+      chai.expect(error).to.be.instanceof(MeteorError);
     });
     
     it("has correct details property", () => {
@@ -35,7 +35,7 @@ describe('imports/util/errors', () => {
       chai.expect(error.details.x).to.equal('ex');
     });
     
-  }); // describe new BaseError()
+  }); // describe new MeteorError()
   
   describe('new UtilError()', () => {
     const error = new UtilError("i'm a UtilError!", {x: 'ex'});
@@ -44,8 +44,8 @@ describe('imports/util/errors', () => {
       chai.expect(error).to.be.instanceof(Error);
     });
     
-    it("is an instance of BaseError", () => {
-      chai.expect(error).to.be.instanceof(BaseError);
+    it("is an instance of MeteorError", () => {
+      chai.expect(error).to.be.instanceof(MeteorError);
     });
     
     it("is an instance of UtilError", () => {
