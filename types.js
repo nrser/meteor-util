@@ -1,15 +1,12 @@
 import tcomb from 'tcomb';
+import type { $Refinement } from 'tcomb'
 import * as nrser from 'nrser';
 import { Component } from 'react';
 
-/**
-* extend tcomb and nrser's types with meteor / react stuff.
-*/
+export const ComponentType = nrser.t.subclassOf(Component);
 
-export const types = {
-  ...tcomb,
-  ...nrser.types,
-  ComponentType: nrser.t.subclassOf(Component),
-};
+function isId(string) {
+  return string.length === 17;
+}
 
-export const t = types;
+export type Id = string & $Refinement<typeof isId>;
