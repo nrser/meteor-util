@@ -1,5 +1,5 @@
 import tcomb from 'tcomb';
-import type { $Refinement } from 'tcomb'
+import type { $Refinement } from 'tcomb';
 import * as nrser from 'nrser';
 import { Component } from 'react';
 
