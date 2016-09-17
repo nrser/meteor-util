@@ -1,6 +1,6 @@
 import { _ } from 'meteor/underscore';
 import { chai } from 'meteor/practicalmeteor:chai';
-import { itMaps } from 'meteor/nrser:util/testing.js';
+import { itMaps } from 'nrser/lib/testing';
 import * as util from 'meteor/nrser:util';
 
 import {

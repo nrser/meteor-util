@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import { chai } from 'meteor/practicalmeteor:chai';
-import { itMaps } from './testing.js';
+import { itMaps } from 'nrser/lib/testing';
 import * as util from '.';
 
 import { UtilError, MeteorError } from './errors.js';
